@@ -2,65 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Eco Dynamics</title>
-
-    <link rel="stylesheet" href="style.css">
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+    <h2>Eco Dynamics AI</h2>
 
-    <h1>Recycle Right</h1>
-    <p class="subtitle">Dispose responsibly. Protect our planet.</p>
+    <input type="file" id="imageUpload" accept="image/*">
 
-    <div class="uploadBox">
+    <br><br>
 
-        <img id="preview" src="" alt="">
+    <img
+        id="preview"
+        width="300"
+        style="display:none;border-radius:15px;"
+    >
 
-        <div class="buttons">
+    <br><br>
 
-            <input
-                type="file"
-                id="imageUpload"
-                accept="image/*">
+    <img
+        id="resultImage"
+        src="final recyclable screen.png"
+        width="900"
+    >
 
-            <button onclick="predict()">
-                Scan Waste
-            </button>
+    <h2>
+        Material Type:
+        <span id="materialType">---</span>
+    </h2>
 
-        </div>
+    <h2>
+        Recycling Category:
+        <span id="recyclingCategory">---</span>
+    </h2>
 
-    </div>
+    <script src="script.js"></script>
 
-    <div class="result">
+    <script>
 
-        <h2>Detected Item</h2>
+        const upload = document.getElementById("imageUpload");
 
-        <h3 id="materialType">
-            -
-        </h3>
+        upload.addEventListener("change", function(){
 
-        <div id="recycleCard" class="hidden">
+            const file = this.files[0];
 
-            <img
-                id="recycleImage"
-                width="180">
+            if(!file) return;
 
-            <h2 id="status"></h2>
+            const img = document.getElementById("preview");
 
-        </div>
+            img.src = URL.createObjectURL(file);
 
-    </div>
+            img.style.display = "block";
 
-</div>
+            img.onload = function(){
 
-<script src="script.js"></script>
+                predict(img);
+
+            };
+
+        });
+
+    </script>
 
 </body>
 </html>
