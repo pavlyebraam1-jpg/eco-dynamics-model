@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Eco Dynamics</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Recycle Right</h1>
+    <p class="subtitle">Dispose responsibly. Protect our planet.</p>
+
+    <div class="uploadBox">
+
+        <img id="preview" src="" alt="">
+
+        <div class="buttons">
+
+            <input
+                type="file"
+                id="imageUpload"
+                accept="image/*">
+
+            <button onclick="predict()">
+                Scan Waste
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="result">
+
+        <h2>Detected Item</h2>
+
+        <h3 id="materialType">
+            -
+        </h3>
+
+        <div id="recycleCard" class="hidden">
+
+            <img
+                id="recycleImage"
+                width="180">
+
+            <h2 id="status"></h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
