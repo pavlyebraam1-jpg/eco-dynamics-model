@@ -1,74 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Eco Dynamics</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
-
-    <link rel="stylesheet" href="style.css">
-</head>
-
 <body>
 
-    <h2>Eco Dynamics AI</h2>
+<div class="phone">
 
-    <input type="file" id="imageUpload" accept="image/*">
+    <!-- Everything that belongs to the screen goes here -->
 
-    <br><br>
+    <img id="resultImage" src="final recyclable screen.png">
 
-    <img
-        id="preview"
-        width="300"
-        style="display:none;border-radius:15px;"
-    >
+    <img id="preview" style="display:none;">
 
-    <br><br>
+    <div id="materialType">---</div>
 
-    <img
-        id="resultImage"
-        src="final recyclable screen.png"
-        width="900"
-    >
+    <div id="recyclingCategory">---</div>
 
-    <h2>
-        Material Type:
-        <span id="materialType">---</span>
-    </h2>
+</div>
 
-    <h2>
-        Recycling Category:
-        <span id="recyclingCategory">---</span>
-    </h2>
+<input
+    type="file"
+    id="imageUpload"
+    accept="image/*"
+>
 
-    <script src="script.js"></script>
-
-    <script>
-
-        const upload = document.getElementById("imageUpload");
-
-        upload.addEventListener("change", function(){
-
-            const file = this.files[0];
-
-            if(!file) return;
-
-            const img = document.getElementById("preview");
-
-            img.src = URL.createObjectURL(file);
-
-            img.style.display = "block";
-
-            img.onload = function(){
-
-                predict(img);
-
-            };
-
-        });
-
-    </script>
+<script src="script.js"></script>
 
 </body>
-</html>
