@@ -1,25 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Dynamics AI</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
 
 <div class="phone">
 
-    <!-- Everything that belongs to the screen goes here -->
+    <!-- Background Screen -->
+    <img
+        id="resultImage"
+        src="final recyclable screen.png"
+        class="background"
+    >
 
-    <img id="resultImage" src="final recyclable screen.png">
+    <!-- Uploaded Image -->
+    <img
+        id="preview"
+        class="preview"
+        style="display:none;"
+    >
 
-    <img id="preview" style="display:none;">
+    <!-- Material Type -->
+    <div id="materialType" class="material-text">
+        ---
+    </div>
 
-    <div id="materialType">---</div>
-
-    <div id="recyclingCategory">---</div>
+    <!-- Recycling Category -->
+    <div id="recyclingCategory" class="category-text">
+        ---
+    </div>
 
 </div>
 
+<!-- Hidden Upload Button -->
 <input
     type="file"
     id="imageUpload"
     accept="image/*"
+    hidden
 >
 
 <script src="script.js"></script>
 
+<script>
+
+const upload = document.getElementById("imageUpload");
+
+upload.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const img = document.getElementById("preview");
+
+    img.src = URL.createObjectURL(file);
+
+    img.style.display = "block";
+
+    img.onload = function () {
+        predict(img);
+    };
+
+});
+
+// Clicking the phone opens the image picker
+document.querySelector(".phone").addEventListener("click", function () {
+    upload.click();
+});
+
+</script>
+
 </body>
+</html>
